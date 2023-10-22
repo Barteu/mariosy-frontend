@@ -14,6 +14,8 @@ export class UserService {
   private searchedUsers$ = new BehaviorSubject<User[]>([]);
   private searchedUsersData: User[] = [];
 
+  private _userId: string = '';
+
   fetchSearchedUsers() {
     const url = `${this.usersUrl}?searchKeyword=`;
     return this.http.get<User[]>(url).subscribe((data) => {
@@ -32,5 +34,13 @@ export class UserService {
   searchUsers(searchText: string | null): Observable<User[]> {
     const url = `${this.usersUrl}?searchKeyword=${searchText}`;
     return this.http.get<User[]>(url);
+  }
+
+  set userId(id: string) {
+    this._userId = id;
+  }
+
+  get userId(): string {
+    return this._userId;
   }
 }

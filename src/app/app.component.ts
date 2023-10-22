@@ -1,6 +1,8 @@
+import { UserService } from './services/user.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,16 @@ export class AppComponent {
 
   constructor(
     private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.registerIcons();
+    if (this.userService.userId.length == 0) {
+      this.router.navigateByUrl('login');
+    }
   }
 
   registerIcons() {

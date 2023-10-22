@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { MariosyService } from './../../services/mariosy.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Marios } from 'src/app/interfaces/marios';
@@ -16,11 +17,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   receivedMariosesCount: number = 0;
 
   private destroy$: Subject<void> = new Subject();
+  private userId: string = '';
 
-  constructor(private mariosyService: MariosyService) {}
+  constructor(
+    private mariosyService: MariosyService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
-    this.mariosyService.userLastMarioses
+    this.userId = this.userService.userId;
+    console.log(this.userId);
+    
+    this.mariosyService
+      .getUserLastMarioses(this.userId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.lastMarioses = [...data[0], ...data[1]]
@@ -28,13 +37,15 @@ export class HomeComponent implements OnInit, OnDestroy {
           .slice(0, LAST_MARIOS_COUNT);
       });
 
-    this.mariosyService.createdMariosesCount
+    this.mariosyService
+      .getCreatedMariosesCount(this.userId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.createdMariosesCount = data;
       });
 
-    this.mariosyService.receivedMariosesCount
+    this.mariosyService
+      .getReceivedMariosesCount(this.userId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.receivedMariosesCount = data;

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { MariosyService } from './../../services/mariosy.service';
+import { UserService } from './../../services/user.service';
 import { Marios } from 'src/app/interfaces/marios';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -15,18 +16,21 @@ export class ReceivedSentMariosComponent {
   constructor(
     private location: Location,
     private mariosyService: MariosyService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   gridTitle: string = '';
   marioses: Marios[] = [];
   private destroy$: Subject<void> = new Subject();
-
+  private userId: string = '';
   ngOnInit() {
+    this.userId = this.userService.userId;
+
     if (this.router.url === '/received') {
       this.gridTitle = 'RECEIVED MARIOS:';
 
-      this.mariosyService.receivedMarioses
+      this.mariosyService.getReceivedMarioses(this.userId)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data) => {
           this.marioses = data.sort(compareByCreationTimestampDesc);
@@ -34,7 +38,7 @@ export class ReceivedSentMariosComponent {
     } else {
       this.gridTitle = 'SENT MARIOS:';
 
-      this.mariosyService.createdMarioses
+      this.mariosyService.getCreatedMarioses(this.userId)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data) => {
           this.marioses = data.sort(compareByCreationTimestampDesc);

@@ -1,0 +1,15 @@
+<div class="page-content-container">
+  <form (ngSubmit)="logIn()">
+    <mat-form-field class="full-width">
+      <mat-label>User id</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="User id"
+        [(ngModel)]="userId"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </mat-form-field>
+    <button class="button grey-on-hover" type="submit">Log In</button>
+  </form>
+</div>

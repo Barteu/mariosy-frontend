@@ -22,6 +22,7 @@ import { NgFor, AsyncPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
     CreateMariosComponent,
     MariosGridComponent,
     ReceivedSentMariosComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

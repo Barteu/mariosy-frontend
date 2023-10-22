@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { MariosyService } from 'src/app/services/mariosy.service';
 import { Component, Input } from '@angular/core';
 import { Marios } from 'src/app/interfaces/marios';
@@ -5,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MariosDialogComponent } from '../marios-dialog/marios-dialog.component';
 import { Subject, takeUntil } from 'rxjs';
 import { MariosType } from 'src/app/interfaces/mariosType';
-import { USER_ID } from 'src/app/dev_constants';
 
 @Component({
   selector: 'app-marios-card',
@@ -17,7 +17,8 @@ export class MariosCardComponent {
 
   constructor(
     private matDialog: MatDialog,
-    private mariosyService: MariosyService
+    private mariosyService: MariosyService,
+    private userService: UserService
   ) {}
 
   mariosType!: MariosType;
@@ -27,7 +28,11 @@ export class MariosCardComponent {
 
   private destroy$: Subject<void> = new Subject();
 
+  private userId: string = '';
+
   ngOnInit() {
+    this.userId = this.userService.userId;
+
     this.mariosyService.mariosTypes
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
@@ -53,7 +58,7 @@ export class MariosCardComponent {
   }
 
   initDisplayText() {
-    if (this.marios.creatorExternalId === USER_ID) {
+    if (this.marios.creatorExternalId === this.userId ) {
       this.textBeforeUsers = 'To:';
       this.usersToDisplay = this.marios.receiversNames;
     } else {

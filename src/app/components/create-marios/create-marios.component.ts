@@ -13,7 +13,6 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { map, startWith, switchMap, debounceTime } from 'rxjs/operators';
 import { MariosType } from 'src/app/interfaces/mariosType';
-import { USER_ID } from 'src/app/dev_constants';
 import { Router } from '@angular/router';
 
 interface Receiver {
@@ -46,8 +45,11 @@ export class CreateMariosComponent {
 
   mariosTypes: MariosType[] = [];
   private destroy$: Subject<void> = new Subject();
+  private userId: string = '';
 
   ngOnInit() {
+    this.userId = this.userService.userId;
+
     this.mariosyService.mariosTypes.subscribe((data) => {
       this.mariosTypes = data;
     });
@@ -62,7 +64,7 @@ export class CreateMariosComponent {
           (user) =>
             !this.receivers.some(
               (addedReceiver) => addedReceiver.externalId === user.externalId
-            ) && user.externalId !== USER_ID
+            ) && user.externalId !== this.userId
         );
       });
   }
@@ -117,7 +119,7 @@ export class CreateMariosComponent {
     this.mariosForm.markAllAsTouched();
     if (this.mariosForm.valid) {
       let mariosPayload: MariosPayload = {
-        creatorExternalId: USER_ID,
+        creatorExternalId: this.userId,
         receiversExternalIds: this.mariosForm.controls['receiversIds'].value,
         title: this.mariosForm.controls['title'].value,
         comment: this.mariosForm.controls['comment'].value,
