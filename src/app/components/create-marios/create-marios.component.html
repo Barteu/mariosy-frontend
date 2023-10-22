@@ -47,7 +47,7 @@
             *ngFor="let user of filteredUsers"
             [value]="user.externalId"
           >
-            {{ user.firstName }} {{ user.lastName }}
+            {{ user.username }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -86,7 +86,7 @@
       <div class="form-label-text">Title:</div>
       <mat-form-field class="full-width" appearance="outline">
         <input
-          type="email"
+          type="text"
           matInput
           formControlName="title"
           placeholder="Enter marios title"
@@ -113,7 +113,7 @@
     <div id="comment-row-container" class="form-row-container">
       <div class="form-label-text">Comment:</div>
 
-      <mat-form-field class="full-width" appearance="outline">
+      <mat-form-field class="example-full-width" appearance="outline">
         <div class="textarea-wrapper">
           <textarea
             class="comment-textarea"

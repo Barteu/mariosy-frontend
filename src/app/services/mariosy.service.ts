@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Marios, MariosPayload } from '../interfaces/marios';
 import { BehaviorSubject, combineLatest, zip } from 'rxjs';
-import { LAST_MARIOS_COUNT, USER_ID } from '../dev_constants';
 import { MariosType } from '../interfaces/mariosType';
 import { StringDictionary } from '../interfaces/stringDictionary';
 import { mapMariosDTOToMarios } from 'src/app/utils/mariosUtils';
@@ -45,18 +44,18 @@ export class MariosyService {
   private mariosTypes$ = new BehaviorSubject<MariosType[]>([]);
   private mariosTypesData: MariosType[] = [];
 
-  get userLastMarioses() {
+  getUserLastMarioses(userId: string) {
     if (this.createdMariosesData.length === 0) {
-      this.fetchCreatedMarioses();
+      this.fetchCreatedMarioses(userId);
     }
     if (this.receivedMariosesData.length === 0) {
-      this.fetchReceivedMarioses();
+      this.fetchReceivedMarioses(userId);
     }
     return combineLatest([this.createdMarioses$, this.receivedMarioses$]);
   }
 
-  fetchCreatedMarioses() {
-    const url = `api/users/${USER_ID}/marioses/created`;
+  fetchCreatedMarioses(userId: string) {
+    const url = `api/users/${userId}/marioses/created`;
     return this.http.get<Marios[]>(url).subscribe((data) => {
       this.createdMariosesData = data.map(mapMariosDTOToMarios);
       this.createdMarioses$.next(this.createdMariosesData);
@@ -64,22 +63,22 @@ export class MariosyService {
     });
   }
 
-  get createdMarioses() {
+  getCreatedMarioses(userId: string) {
     if (this.createdMariosesData.length === 0) {
-      this.fetchCreatedMarioses();
+      this.fetchCreatedMarioses(userId);
     }
     return this.createdMarioses$.asObservable();
   }
 
-  get createdMariosesCount() {
+  getCreatedMariosesCount(userId: string) {
     if (this.createdMariosesData.length === 0) {
-      this.fetchCreatedMarioses();
+      this.fetchCreatedMarioses(userId);
     }
     return this.createdMariosesCount$.asObservable();
   }
 
-  fetchReceivedMarioses() {
-    const url = `api/users/${USER_ID}/marioses/received`;
+  fetchReceivedMarioses(userId: string) {
+    const url = `api/users/${userId}/marioses/received`;
     return this.http.get<Marios[]>(url).subscribe((data) => {
       this.receivedMariosesData = data.map(mapMariosDTOToMarios);
       this.receivedMarioses$.next(this.receivedMariosesData);
@@ -87,16 +86,16 @@ export class MariosyService {
     });
   }
 
-  get receivedMarioses() {
-    if (this.receivedMariosesData.length === 0) {
-      this.fetchReceivedMarioses();
+  getReceivedMarioses(userId: string, forceFetch: boolean) {
+    if (this.receivedMariosesData.length === 0 || forceFetch) {
+      this.fetchReceivedMarioses(userId);
     }
     return this.receivedMarioses$.asObservable();
   }
 
-  get receivedMariosesCount() {
+  getReceivedMariosesCount(userId: string) {
     if (this.receivedMariosesData.length === 0) {
-      this.fetchReceivedMarioses();
+      this.fetchReceivedMarioses(userId);
     }
     return this.receivedMariosesCount$.asObservable();
   }

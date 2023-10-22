@@ -5,7 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MariosDialogComponent } from '../marios-dialog/marios-dialog.component';
 import { Subject, takeUntil } from 'rxjs';
 import { MariosType } from 'src/app/interfaces/mariosType';
-import { USER_ID } from 'src/app/dev_constants';
+
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
   selector: 'app-marios-card',
@@ -17,7 +19,8 @@ export class MariosCardComponent {
 
   constructor(
     private matDialog: MatDialog,
-    private mariosyService: MariosyService
+    private mariosyService: MariosyService,
+    private readonly keycloak: KeycloakService
   ) {}
 
   mariosType!: MariosType;
@@ -27,7 +30,11 @@ export class MariosCardComponent {
 
   private destroy$: Subject<void> = new Subject();
 
-  ngOnInit() {
+  public userId: string = '';
+
+  async ngOnInit() {
+    this.userId = (await this.keycloak.loadUserProfile()).id ?? '';
+
     this.mariosyService.mariosTypes
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
@@ -53,14 +60,12 @@ export class MariosCardComponent {
   }
 
   initDisplayText() {
-    if (this.marios.creatorExternalId === USER_ID) {
+    if (this.marios.creatorExternalId === this.userId) {
       this.textBeforeUsers = 'To:';
       this.usersToDisplay = this.marios.receiversNames;
     } else {
       this.textBeforeUsers = 'From:';
-      this.usersToDisplay = [
-        `${this.marios.creatorFirstName} ${this.marios.creatorLastName}`,
-      ];
+      this.usersToDisplay = [`${this.marios.creatorUsername}`];
     }
   }
 }

@@ -2,6 +2,9 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,13 +13,23 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'mariosy-frontend';
 
+  public isLoggedIn = false;
+  public userProfile: KeycloakProfile | null = null;
+
   constructor(
     private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private readonly keycloak: KeycloakService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.registerIcons();
+
+    this.isLoggedIn = await this.keycloak.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      this.userProfile = await this.keycloak.loadUserProfile();
+    }
   }
 
   registerIcons() {
@@ -88,6 +101,11 @@ export class AppComponent {
       this.sanitizer.bypassSecurityTrustResourceUrl(
         'assets/icons/person_sharp_icon_yellow.svg'
       )
+    );
+
+    this.iconRegistry.addSvgIcon(
+      'logout',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/logout.svg')
     );
   }
 }

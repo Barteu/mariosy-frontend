@@ -4,6 +4,10 @@ import { Marios } from 'src/app/interfaces/marios';
 import { Subject, takeUntil } from 'rxjs';
 import { compareByCreationTimestampDesc } from 'src/app/utils/mariosUtils';
 import { LAST_MARIOS_COUNT } from 'src/app/dev_constants';
+import { UserService } from 'src/app/services/user.service';
+
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +20,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   receivedMariosesCount: number = 0;
 
   private destroy$: Subject<void> = new Subject();
+  public userId: string = '';
 
-  constructor(private mariosyService: MariosyService) {}
+  constructor(
+    private mariosyService: MariosyService,
+    private readonly keycloak: KeycloakService,
+    private userService: UserService
+  ) {}
 
-  ngOnInit() {
-    this.mariosyService.userLastMarioses
+  async ngOnInit() {
+    this.userId = (await this.keycloak.loadUserProfile()).id ?? '';
+
+    this.userService.checkAndCreateUserIfNotExists(this.userId);
+
+    this.mariosyService
+      .getUserLastMarioses(this.userId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.lastMarioses = [...data[0], ...data[1]]
@@ -28,13 +42,15 @@ export class HomeComponent implements OnInit, OnDestroy {
           .slice(0, LAST_MARIOS_COUNT);
       });
 
-    this.mariosyService.createdMariosesCount
+    this.mariosyService
+      .getCreatedMariosesCount(this.userId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.createdMariosesCount = data;
       });
 
-    this.mariosyService.receivedMariosesCount
+    this.mariosyService
+      .getReceivedMariosesCount(this.userId)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data) => {
         this.receivedMariosesCount = data;

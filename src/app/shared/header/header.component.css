@@ -24,6 +24,17 @@ header {
   cursor: pointer;
 }
 
+.logout_icon {
+  color: white;
+  transform: scale(1.4);
+  cursor: pointer;
+}
+
+.logout_icon_position {
+  position: absolute;
+  right: calc(100vw - 80vw - 10vw + 1vw);
+}
+
 #line {
   display: flex;
   order: 1;
@@ -38,6 +49,11 @@ header {
     width: 92vw;
     border: 0.15rem solid #fff;
   }
+
+  .logout_icon_position {
+    position: absolute;
+    right: calc(100vw - 92vw - 4vw + 1vw);
+  }
 }
 
 @media only screen and (min-width: 1500px) {
@@ -46,5 +62,10 @@ header {
     order: 1;
     width: 64vw;
     border: 0.15rem solid #fff;
+  }
+
+  .logout_icon_position {
+    position: absolute;
+    right: calc(100vw - 64vw - 18vw + 1vw);
   }
 }

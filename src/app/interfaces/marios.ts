@@ -5,8 +5,7 @@ export interface Marios {
   title: string;
   comment: string;
   type: string;
-  creatorFirstName: String;
-  creatorLastName: String;
+  creatorUsername: String;
   creationTimestamp: Date;
   receiversNames: string[];
 }

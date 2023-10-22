@@ -1,4 +1,13 @@
-<app-header></app-header>
-<div class="body-container">
-  <router-outlet></router-outlet>
-</div>
+<app-header [logged_in]="userProfile != null"></app-header>
+
+<ng-container *ngIf="userProfile">
+  <div class="body-container">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!userProfile">
+  <div class="body-container">
+    <app-login-register></app-login-register>
+  </div>
+</ng-container>

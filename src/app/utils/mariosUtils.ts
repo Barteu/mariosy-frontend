@@ -10,7 +10,7 @@ export function compareByCreationTimestampDesc(a: Marios, b: Marios) {
   return 0;
 }
 
-export function mapMariosDTOToMarios(data: any){
+export function mapMariosDTOToMarios(data: any) {
   let marios: Marios = {
     externalId: data.externalId,
     creatorExternalId: data.creatorExternalId,
@@ -18,10 +18,9 @@ export function mapMariosDTOToMarios(data: any){
     title: data.title,
     comment: data.comment,
     type: data.type,
-    creatorFirstName: data.creatorFirstName,
-    creatorLastName: data.creatorLastName,
+    creatorUsername: data.creatorUsername,
     creationTimestamp: new Date(data.creationInstant),
-    receiversNames: data.receiversNames
-  }
+    receiversNames: data.receiversNames,
+  };
   return marios;
 }

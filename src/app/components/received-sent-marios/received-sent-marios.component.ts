@@ -6,6 +6,9 @@ import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { compareByCreationTimestampDesc } from 'src/app/utils/mariosUtils';
 
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
+
 @Component({
   selector: 'app-received-sent-marios',
   templateUrl: './received-sent-marios.component.html',
@@ -15,18 +18,24 @@ export class ReceivedSentMariosComponent {
   constructor(
     private location: Location,
     private mariosyService: MariosyService,
-    private router: Router
+    private router: Router,
+    private readonly keycloak: KeycloakService
   ) {}
 
   gridTitle: string = '';
   marioses: Marios[] = [];
   private destroy$: Subject<void> = new Subject();
 
-  ngOnInit() {
+  public userId: string = '';
+
+  async ngOnInit() {
+    this.userId = (await this.keycloak.loadUserProfile()).id ?? '';
+
     if (this.router.url === '/received') {
       this.gridTitle = 'RECEIVED MARIOS:';
 
-      this.mariosyService.receivedMarioses
+      this.mariosyService
+        .getReceivedMarioses(this.userId, true)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data) => {
           this.marioses = data.sort(compareByCreationTimestampDesc);
@@ -34,7 +43,8 @@ export class ReceivedSentMariosComponent {
     } else {
       this.gridTitle = 'SENT MARIOS:';
 
-      this.mariosyService.createdMarioses
+      this.mariosyService
+        .getCreatedMarioses(this.userId)
         .pipe(takeUntil(this.destroy$))
         .subscribe((data) => {
           this.marioses = data.sort(compareByCreationTimestampDesc);

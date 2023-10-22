@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,36 @@ import { NgFor, AsyncPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8080',
+        realm: 'deloitte',
+        clientId: 'mariosy-frontend',
+      },
+      initOptions: {
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri:
+          window.location.origin + '/assets/silent-check-sso.html',
+      },
+      shouldAddToken: (request) => {
+        const { method, url } = request;
+
+        const isGetRequest = 'GET' === method.toUpperCase();
+        const acceptablePaths = ['/assets'];
+        const isAcceptablePathMatch = acceptablePaths.some((path) =>
+          url.includes(path)
+        );
+
+        return !(isGetRequest && isAcceptablePathMatch);
+      },
+    });
+}
 
 @NgModule({
   declarations: [
@@ -34,6 +64,7 @@ import { MatInputModule } from '@angular/material/input';
     CreateMariosComponent,
     MariosGridComponent,
     ReceivedSentMariosComponent,
+    LoginRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,8 +84,17 @@ import { MatInputModule } from '@angular/material/input';
     MatAutocompleteModule,
     AsyncPipe,
     MatInputModule,
+    KeycloakAngularModule,
+    MatTooltipModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
