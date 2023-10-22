@@ -1,0 +1,10 @@
+<div class="page-content-container">
+  <a class="button grey-on-hover" (click)="goBack()">
+    <mat-icon svgIcon="left-arrow"></mat-icon>
+    <span style="padding-left: 0.3em">BACK</span>
+  </a>
+
+  <span class="white-font-header margin-top">{{ gridTitle }}</span>
+
+  <app-marios-grid [marioses]="marioses"></app-marios-grid>
+</div>

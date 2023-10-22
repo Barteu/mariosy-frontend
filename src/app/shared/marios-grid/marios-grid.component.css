@@ -1,0 +1,7 @@
+mat-grid-tile {
+  border-radius: 5px;
+  background: #fff;
+  min-width: 6.25em;
+  display: flex;
+  justify-items: flex-start;
+}

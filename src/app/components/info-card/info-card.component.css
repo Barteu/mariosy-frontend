@@ -1,0 +1,134 @@
+.info-font {
+  color: #000;
+  font-family: Open Sans;
+  font-size: calc(1.5em + 1vw);
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 0.15em;
+}
+
+.number-font {
+  color: #fccf00;
+  font-family: Open Sans;
+  font-size: calc(2em + 6vw);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  -webkit-text-stroke: 0.04em black;
+}
+
+.info-card-item {
+  display: flex;
+  border-radius: 5px;
+  background-color: #fff;
+  flex-grow: 1;
+  box-shadow: 6px 9px 4px rgba(0, 0, 0, 0.25);
+
+  text-decoration: none;
+  width: 39vw;
+  aspect-ratio: 2/1;
+}
+
+.mariosy-icon {
+  width: 100%;
+  opacity: 0.5;
+  vertical-align: middle;
+}
+
+.icon-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("src/assets/images/mariosy_icon.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90%;
+}
+
+.text-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 1rem 0rem 1rem;
+  white-space: pre-line;
+  width: 50%;
+}
+
+.img-holder {
+  position: relative;
+  display: inline-block;
+}
+.img-holder p {
+  position: absolute;
+  top: 0%;
+  left: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  text-align: center;
+}
+
+@media only screen and (max-width: 850px) {
+  .info-card-item {
+    display: flex;
+    border-radius: 5px;
+    background-color: #fff;
+    flex-grow: 1;
+    box-shadow: 6px 9px 4px rgba(0, 0, 0, 0.25);
+
+    text-decoration: none;
+    width: 45vw;
+    aspect-ratio: 2/1;
+  }
+
+  .number-font {
+    color: #fccf00;
+    font-family: Open Sans;
+    font-size: calc(0.75em + 10vw);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    -webkit-text-stroke: 0.04em black;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .info-card-item {
+    display: flex;
+    border-radius: 5px;
+    background-color: #fff;
+    flex-grow: 1;
+    box-shadow: 6px 9px 4px rgba(0, 0, 0, 0.25);
+
+    text-decoration: none;
+    width: 31vw;
+    aspect-ratio: 2/1;
+  }
+
+  .info-font {
+    color: #000;
+    font-family: Open Sans;
+    font-size: calc(2em + 0.5vw);
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 0.15em;
+  }
+
+  .number-font {
+    color: #fccf00;
+    font-family: Open Sans;
+    font-size: calc(3em + 5vw);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    -webkit-text-stroke: 0.04em black;
+  }
+}

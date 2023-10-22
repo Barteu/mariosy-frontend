@@ -1,0 +1,50 @@
+header {
+  display: flex;
+  flex-direction: column;
+  height: 9vh;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.mariosy_logo {
+  /* justify-self: center; */
+  max-width: fit-content;
+  max-height: calc(5vh - 0.1rem);
+  margin-top: 1.75vh;
+  margin-bottom: 2.25vh;
+  order: 0;
+
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+  cursor: pointer;
+}
+
+#line {
+  display: flex;
+  order: 1;
+  width: 80vw;
+  border: 0.15rem solid #fff;
+}
+
+@media only screen and (max-width: 850px) {
+  #line {
+    display: flex;
+    order: 1;
+    width: 92vw;
+    border: 0.15rem solid #fff;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  #line {
+    display: flex;
+    order: 1;
+    width: 64vw;
+    border: 0.15rem solid #fff;
+  }
+}

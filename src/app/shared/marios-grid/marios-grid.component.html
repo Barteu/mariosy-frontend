@@ -1,0 +1,13 @@
+<div id="box" #box>
+  <mat-grid-list
+    [cols]="columns"
+    gutterSize="20"
+    rowHeight="2:1"
+    (window:resize)="onBoxResize()"
+    #gridList
+  >
+    <mat-grid-tile *ngFor="let marios of marioses">
+      <app-marios-card [marios]="marios"></app-marios-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

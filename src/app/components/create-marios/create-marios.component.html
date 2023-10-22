@@ -1,0 +1,144 @@
+<div class="page-content-container">
+  <a id="back-button" class="button grey-on-hover" (click)="goBack()">
+    <mat-icon svgIcon="left-arrow"></mat-icon>
+    <span style="padding-left: 5px">BACK</span>
+  </a>
+
+  <form class="marios-form" [formGroup]="mariosForm" (ngSubmit)="onSubmit()">
+    <div class="form-row-container-receivers">
+      <div class="icon-person-container">
+        <mat-icon class="icon-person">person-sharp-yellow</mat-icon>
+      </div>
+
+      <mat-form-field id="receivers-form-filed" class="chip-list">
+        <mat-label class="user-text"> Who you want to recognize?</mat-label>
+        <mat-chip-grid
+          #chipGrid
+          aria-label="Receiver selection"
+          formControlName="receiversIds"
+        >
+          <mat-chip-row
+            *ngFor="let receiver of receivers"
+            (removed)="remove(receiver.externalId.toString())"
+            [value]="receiver.externalId"
+          >
+            {{ receiver.viewText }}
+            <button
+              matChipRemove
+              [attr.aria-label]="'remove ' + receiver.externalId"
+            >
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="New Receiver..."
+          #userInput
+          [formControl]="userCtrl"
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option
+            *ngFor="let user of filteredUsers"
+            [value]="user.externalId"
+          >
+            {{ user.firstName }} {{ user.lastName }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="line"></div>
+    <div id="category-row-container" class="form-row-container-category">
+      <div class="form-label-text">Select category:</div>
+      <mat-chip-listbox
+        aria-label="Marios types"
+        formControlName="selectedCategory"
+      >
+        <mat-chip-option
+          class="type-chips"
+          *ngFor="let type of mariosTypes; index as typeIndex"
+          (click)="changeSelectedType(type)"
+          [value]="type.id"
+        >
+          <mat-icon matChipAvatar svgIcon="{{ type.iconName }}"></mat-icon>
+          {{ type.text }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+      <mat-error
+        class="error-text-category"
+        *ngIf="
+          mariosForm.controls['selectedCategory'].hasError('required') &&
+          mariosForm.controls['selectedCategory'].touched
+        "
+      >
+        Category is <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <div class="line"></div>
+    <div id="title-row-container" class="form-row-container">
+      <div class="form-label-text">Title:</div>
+      <mat-form-field class="full-width" appearance="outline">
+        <input
+          type="email"
+          matInput
+          formControlName="title"
+          placeholder="Enter marios title"
+        />
+
+        <mat-error
+          class="error-text"
+          *ngIf="
+            mariosForm.controls['title'].hasError('required') &&
+            mariosForm.controls['title'].touched
+          "
+        >
+          Title is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          class="error-text"
+          *ngIf="mariosForm.controls['title'].hasError('maxlength')"
+        >
+          Title can not be longer than 63 characters
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="line"></div>
+    <div id="comment-row-container" class="form-row-container">
+      <div class="form-label-text">Comment:</div>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <div class="textarea-wrapper">
+          <textarea
+            class="comment-textarea"
+            rows="4"
+            matInput
+            #message
+            maxlength="255"
+            formControlName="comment"
+          >
+          </textarea>
+          <span class="word-count">{{ message.value.length }}/255</span>
+        </div>
+
+        <mat-error
+          class="error-text"
+          *ngIf="
+            mariosForm.controls['comment'].hasError('required') &&
+            mariosForm.controls['comment'].touched
+          "
+        >
+          Comment is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button class="submit-button grey-on-hover" type="submit">SEND</button>
+    </div>
+  </form>
+</div>

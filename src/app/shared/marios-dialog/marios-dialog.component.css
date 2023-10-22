@@ -1,0 +1,72 @@
+.marios-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  align-self: flex-end;
+}
+
+.marios-modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.first-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.from-text {
+  color: #ea808e;
+  font-family: Open Sans;
+  font-size: 1.25em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0em 0em;
+  width: 75%;
+}
+
+.type-text {
+  color: #000;
+  font-family: Open Sans;
+  font-size: 1.375em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0em 0em 0em 0em;
+
+  display: flex;
+  align-items: center;
+  gap: 0.625em;
+}
+
+.icon-size {
+  font-size: 1em;
+}
+
+.title-text {
+  color: #494949;
+  font-family: Open Sans;
+  font-size: 1.5625em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0.3125em 0em 1.125em 0em;
+}
+
+.comment-text {
+  color: #a1a1a1;
+  font-family: Open Sans;
+  font-size: 1.125em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0em 0em 0em 0em;
+}
+
+.mat-mdc-icon-button {
+  --mat-mdc-button-persistent-ripple-color: white;
+}

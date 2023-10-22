@@ -1,0 +1,36 @@
+<div class="marios-card" (click)="openDialog()">
+  <div class="headers-grid-container">
+    <mat-icon
+      svgIcon="person-sharp-pink"
+      class="grid-item icon-size"
+    ></mat-icon>
+    <span class="from-text grid-item">
+      {{ textBeforeUsers }}&nbsp;
+      <span *ngIf="usersToDisplay.length == 1"> {{ usersToDisplay[0] }} </span>
+      <span *ngIf="usersToDisplay.length > 1">
+        {{ usersToDisplay[0] }}...
+      </span>
+    </span>
+
+    <mat-icon
+      svgIcon="{{ mariosType ? mariosType.iconName : 'green-star' }}"
+      class="grid-item icon-size"
+    ></mat-icon>
+    <span class="type-text grid-item">{{
+      mariosType ? mariosType.text : ""
+    }}</span>
+
+    <span class="title-text grid-item">T:</span>
+    <span class="title-text grid-item" *ngIf="marios.title.length <= 28">
+      {{ marios.title }}
+    </span>
+    <span class="title-text grid-item" *ngIf="marios.title.length > 28">
+      {{ marios.title | slice : 0 : 25 }}...
+    </span>
+  </div>
+
+  <p class="comment">
+    <span class="comment-text">{{ marios.comment | slice : 0 : 75 }}...</span>
+    <span class="more-text">See more</span>
+  </p>
+</div>

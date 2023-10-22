@@ -1,0 +1,28 @@
+<div id="marios-dialog" class="marios-modal">
+  <button id="close-dialog-button" mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-dialog-content>
+    <div class="marios-modal-content">
+      <div class="first-row">
+        <span id="from-text" class="from-text">
+          {{ data.textBeforeUsers }}
+          <span *ngFor="let user of data.usersToDisplay; index as i">
+            {{ i < data.usersToDisplay.length - 1 ? user + ", " : user }}
+          </span>
+        </span>
+
+        <span class="type-text">
+          <mat-icon
+            class="icon-size"
+            svgIcon="{{ data.mariosType.iconName }}"
+          ></mat-icon
+          >{{ data.mariosType.text }}
+        </span>
+      </div>
+      <span class="title-text">{{ data.title }}</span>
+      <p id="comment-text" class="comment-text">{{ data.comment }}</p>
+    </div>
+  </mat-dialog-content>
+</div>

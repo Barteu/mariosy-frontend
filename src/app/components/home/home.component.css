@@ -1,0 +1,11 @@
+#info-cards-container {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  column-gap: 2vw;
+  align-content: stretch;
+  margin-bottom: 2rem;
+  margin-top: 3vh;
+}

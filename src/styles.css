@@ -1,0 +1,133 @@
+/* You can add global styles to this file, and also import other style files */
+
+html {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    #e74850 8.85%,
+    #236fe9 27.08%,
+    #4286f4 55.73%
+  );
+  background-attachment: fixed;
+  margin: 0;
+  font-family: Open Sans;
+}
+
+.body-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80vw;
+}
+
+.button {
+  border-radius: 5px;
+  border: 3px solid #fff;
+  background: #ffdf24;
+
+  color: #000;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+
+  text-align: center;
+  padding: 1% 2% 1% 2%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+
+.grey-on-hover {
+  position: relative;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all 0.5s;
+    opacity: 0;
+    z-index: 2;
+
+    border-radius: 5px;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+}
+
+.white-font-header {
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+}
+
+.mat-grid-tile-content {
+  align-items: flex-start !important;
+  justify-content: left !important;
+}
+
+.mdc-line-ripple {
+  display: none;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white;
+}
+
+.form-row-container-receivers
+  > mat-form-field
+  > .mat-mdc-form-field-subscript-wrapper {
+  height: 0px;
+}
+
+.mat-mdc-text-field-wrapper > .mat-mdc-form-field-flex {
+  align-self: center;
+}
+
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+  font-family: Open Sans !important;
+}
+
+@media only screen and (max-width: 850px) {
+  .page-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 92vw;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .page-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 64vw;
+  }
+}

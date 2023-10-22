@@ -1,0 +1,27 @@
+<div class="page-content-container">
+  <div id="info-cards-container">
+    <app-info-card
+      [text]="'RECEIVED\nMARIOS:'"
+      [route]="'/received'"
+      [number]="receivedMariosesCount"
+    ></app-info-card>
+    <app-info-card
+      [text]="'SENT\nMARIOS:'"
+      [route]="'/sent'"
+      [number]="createdMariosesCount"
+    ></app-info-card>
+  </div>
+
+  <a
+    id="add-button"
+    class="button grey-on-hover"
+    style="align-self: flex-end"
+    routerLink="/create"
+  >
+    <span style="padding-right: 0.3em">ADD MARIOS</span>
+    <mat-icon svgIcon="right-arrow"></mat-icon>
+  </a>
+
+  <span class="white-font-header">LAST MARIOS:</span>
+  <app-marios-grid id="last-marioses-grid" [marioses]="lastMarioses"></app-marios-grid>
+</div>
