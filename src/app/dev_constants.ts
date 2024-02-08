@@ -1,2 +1,2 @@
-export const USER_ID = 'fb515ee5-4c94-4fc6-ac63-6c1685c17260';
+export const USER_ID = '111644eb-8385-46a3-9b3a-529fd26d3111';
 export const LAST_MARIOS_COUNT = 9;

@@ -5,7 +5,7 @@
 .marios-card:after {
   content: "READ MORE";
   color: #fff;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.8em;
   font-style: normal;
   font-weight: 800;
@@ -64,7 +64,7 @@
 
 .from-text {
   color: #ea808e;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.125em;
   font-style: normal;
   font-weight: 700;
@@ -73,7 +73,7 @@
 
 .type-text {
   color: #494949;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.125em;
   font-style: normal;
   font-weight: 700;
@@ -85,7 +85,7 @@
 
 .title-text {
   color: #494949;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.125em;
   font-style: normal;
   font-weight: 700;
@@ -94,7 +94,7 @@
 
 .comment-text {
   color: #a1a1a1;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 0.9375em;
   font-style: normal;
   font-weight: 700;
@@ -103,7 +103,7 @@
 
 .more-text {
   color: #494949;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 0.9375em;
   font-style: normal;
   font-weight: 700;

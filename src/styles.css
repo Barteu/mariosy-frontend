@@ -13,7 +13,7 @@ body {
   );
   background-attachment: fixed;
   margin: 0;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
 }
 
 .body-container {
@@ -78,7 +78,7 @@ body {
 
 .white-font-header {
   color: #fff;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -111,7 +111,7 @@ body {
 }
 
 .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
-  font-family: Open Sans !important;
+  font-family: Open Sans, sans-serif !important;
 }
 
 @media only screen and (max-width: 850px) {

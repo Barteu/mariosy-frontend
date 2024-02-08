@@ -20,7 +20,7 @@ button {
 
 .from-text {
   color: #ea808e;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.25em;
   font-style: normal;
   font-weight: 700;
@@ -31,7 +31,7 @@ button {
 
 .type-text {
   color: #000;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.375em;
   font-style: normal;
   font-weight: 700;
@@ -49,7 +49,7 @@ button {
 
 .title-text {
   color: #494949;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.5625em;
   font-style: normal;
   font-weight: 700;
@@ -59,7 +59,7 @@ button {
 
 .comment-text {
   color: #a1a1a1;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.125em;
   font-style: normal;
   font-weight: 700;

@@ -19,7 +19,7 @@
   border-radius: 5px;
   border: 3px solid #141414;
   background: #ffdf24;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   color: #000;
   font-size: 1.0625em;
   font-style: normal;
@@ -72,7 +72,7 @@
 
 .form-label-text {
   color: #000;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.375em;
   font-style: normal;
   font-weight: 600;
@@ -86,7 +86,7 @@
 }
 
 .mat-mdc-standard-chip {
-  --mdc-chip-label-text-font: Open Sans;
+  --mdc-chip-label-text-font: Open Sans, sans-serif;
   --mdc-chip-label-text-line-height: 1.25em;
   --mdc-chip-label-text-size: 0.875em;
   --mdc-chip-label-text-tracking: 0.0178571429em;
@@ -114,19 +114,19 @@
 
 .error-text {
   font-size: 0.8rem;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
 }
 
 .error-text-category {
   font-size: 0.8rem;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   padding-left: 16px;
 }
 
 .comment-textarea {
   resize: none;
   font-size: 1em;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
 }
 
 .textarea-wrapper {
@@ -137,14 +137,14 @@
   position: absolute;
   bottom: -5px;
   right: 0px;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   color: rgba(203, 203, 203, 1);
   font-size: 1.125em;
 }
 
 .user-text {
   color: #8d8080;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;
   font-size: 1.375em;
   font-style: normal;
   font-weight: 600;

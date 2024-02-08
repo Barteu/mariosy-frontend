@@ -1,6 +1,6 @@
 .info-font {
   color: #000;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;;
   font-size: calc(1.5em + 1vw);
   font-style: normal;
   font-weight: 800;
@@ -10,7 +10,7 @@
 
 .number-font {
   color: #fccf00;
-  font-family: Open Sans;
+  font-family: Open Sans, sans-serif;;
   font-size: calc(2em + 6vw);
   font-style: normal;
   font-weight: 600;
@@ -90,7 +90,7 @@
 
   .number-font {
     color: #fccf00;
-    font-family: Open Sans;
+    font-family: Open Sans, sans-serif;
     font-size: calc(0.75em + 10vw);
     font-style: normal;
     font-weight: 600;
@@ -114,7 +114,7 @@
 
   .info-font {
     color: #000;
-    font-family: Open Sans;
+    font-family: Open Sans, sans-serif;
     font-size: calc(2em + 0.5vw);
     font-style: normal;
     font-weight: 800;
@@ -124,7 +124,7 @@
 
   .number-font {
     color: #fccf00;
-    font-family: Open Sans;
+    font-family: Open Sans, sans-serif;
     font-size: calc(3em + 5vw);
     font-style: normal;
     font-weight: 600;
