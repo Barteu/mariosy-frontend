@@ -31,7 +31,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     keycloak.init({
       config: {
         url: 'http://localhost:8080',
-        realm: 'deloitte',
+        realm: 'company',
         clientId: 'mariosy-frontend',
       },
       initOptions: {
