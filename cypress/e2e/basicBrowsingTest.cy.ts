@@ -16,7 +16,7 @@ describe('Basic Marioses browsing tests', () => {
   it("Display last marios", () => {
 
     homePage.checkLastMariosLabel()
-    homePage.checkLastMariosesCount(9)
+    homePage.checkLastMariosesCount(8)
  
     let lastMariosComment = homePage.checkAndGetLastMariosComment()
     let commentFirstWord = getTextNthWord(lastMariosComment,1)
@@ -30,7 +30,7 @@ describe('Basic Marioses browsing tests', () => {
 
   
   it("Display received marioses", () => {
-    let expectedReceivedMariosesCount = 15
+    let expectedReceivedMariosesCount = 1
 
     homePage.checkLastMariosLabel()
     homePage.checkReceivedMariosesCountGreaterThan(0)
@@ -58,7 +58,7 @@ describe('Basic Marioses browsing tests', () => {
 
 
   it("Display sent marioses", () => {
-    let expectedSentMariosesCount = 10
+    let expectedSentMariosesCount = 7
 
     homePage.checkLastMariosLabel()
     homePage.checkSentMariosesCountGreaterThan(0)

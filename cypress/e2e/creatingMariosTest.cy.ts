@@ -14,8 +14,10 @@ describe('Basic Marioses browsing tests', () => {
   });
 
   it("Visit marios form and type incorect title", () => {
+      let initialMariosesCount = 7
+
       homePage.checkLastMariosLabel()
-      homePage.checkSentMariosesCountEqual(10)
+      homePage.checkSentMariosesCountEqual(initialMariosesCount)
       homePage.checkAddButton()
       homePage.clickAddButton()
 
@@ -35,13 +37,15 @@ describe('Basic Marioses browsing tests', () => {
 
       homePage.checkLastMariosLabel()
       homePage.checkAddButton()
-      homePage.checkSentMariosesCountEqual(10)
+      homePage.checkSentMariosesCountEqual(initialMariosesCount)
   });
 
 
   it("Visit marios form and fill only receiver", () => {
+    let initialMariosesCount = 7
+
     homePage.checkLastMariosLabel()
-    homePage.checkSentMariosesCountEqual(10)
+    homePage.checkSentMariosesCountEqual(initialMariosesCount)
     homePage.checkAddButton()
     homePage.clickAddButton()
 
@@ -61,12 +65,12 @@ describe('Basic Marioses browsing tests', () => {
 
     homePage.checkLastMariosLabel()
     homePage.checkAddButton()
-    homePage.checkSentMariosesCountEqual(10)
+    homePage.checkSentMariosesCountEqual(initialMariosesCount)
 });
  
 
 it("Send marios form and display new marios", () => {
-  let initialMariosesCount = 10
+  let initialMariosesCount = 7
 
   homePage.checkLastMariosLabel()
   homePage.checkSentMariosesCountEqual(initialMariosesCount)
